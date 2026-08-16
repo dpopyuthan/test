@@ -64,4 +64,61 @@ function searchFunction() {
 </script>
 
 </body>
+</html> <!DOCTYPE html>
+<html lang="ne">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>कर्मचारी फोन निर्देशिका</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; background-color: #f4f4f9; text-align: center; }
+        .container { max-width: 500px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        input { width: 90%; padding: 10px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; }
+        .employee-item { padding: 10px; border-bottom: 1px solid #eee; text-align: left; display: flex; justify-content: space-between; align-items: center; }
+        .name { font-weight: bold; color: #333; }
+        .phone { color: #007bff; text-decoration: none; font-weight: bold; padding: 5px 10px; border: 1px solid #007bff; border-radius: 4px; background-color: #f0f7ff; }
+        .phone:hover { background-color: #007bff; color: white; }
+        .footer { text-align: center; margin-top: 30px; font-size: 14px; color: #666; padding-top: 15px; border-top: 1px solid #eee; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>कर्मचारी फोन नम्बर खोज्नुहोस्</h2>
+    <input type="text" id="searchInput" onkeyup="searchFunction()" placeholder="कर्मचारीको नाम टाइप गर्नुहोस्...">
+
+    <!-- कर्मचारीहरूको सूची (तपाईंको सबै नम्बर यहीँ भित्र राख्नुहोला) -->
+    <div id="employeeList">
+        <div class="employee-item"><span class="name">राम बहादुर</span><a class="phone" href="tel:9841234567">9841234567</a></div>
+        <div class="employee-item"><span class="name">सिता श्रेष्ठ</span><a class="phone" href="tel:9801234567">9801234567</a></div>
+    </div>
+
+    <!-- Developer Name Footer -->
+    <div class="footer">
+        Developed by <span style="color: #24292e; font-weight: bold;">धर्मानन्द देवकोटा</span>
+    </div>
+</div>
+
+<script>
+function searchFunction() {
+    var input = document.getElementById("searchInput").value.toUpperCase();
+    var list = document.getElementById("employeeList");
+    var items = list.getElementsByClassName("employee-item");
+
+    for (var i = 0; i < items.length; i++) {
+        // यहाँ .innerText प्रयोग गरेर नाम मात्र सर्च गर्ने बनाइएको छ, जसले गर्दा नम्बरको कल बटनमा असर पर्दैन
+        var nameSpan = items[i].getElementsByClassName("name")[0];
+        if (nameSpan) {
+            var nameValue = nameSpan.textContent || nameSpan.innerText;
+            if (nameValue.toUpperCase().indexOf(input) > -1) {
+                items[i].style.display = "";
+            } else {
+                items[i].style.display = "none";
+            }
+        }
+    }
+}
+</script>
+
+</body>
 </html>
