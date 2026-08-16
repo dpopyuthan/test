@@ -19,4 +19,49 @@ function render(list){count.textContent=list.length+" जना भेटिय�
 if(!list.length){results.innerHTML='<div class="empty">कुनै सम्पर्क भेटिएन।</div>';return;}
 results.innerHTML=list.map(c=>`<div class="card"><div class="label">नाम</div><div class="value">${c.name}</div><div class="label">दर्जा</div><div class="value">${c.rank||"-"}</div><div class="label">फोन नम्बर</div><div class="value phone">${c.phone}</div></div>`).join("")}
 q.addEventListener("input",()=>{let t=q.value.trim().toLowerCase();render(contacts.filter(c=>c.name.toLowerCase().includes(t)||c.phone.includes(t)))});render(contacts);
-</script></body></html>
+</script></body></html <!DOCTYPE html>
+<html lang="ne">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>कर्मचारी फोन निर्देशिका</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; background-color: #f4f4f9; text-align: center; }
+        .container { max-width: 500px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        input { width: 90%; padding: 10px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; }
+        .employee-item { padding: 10px; border-bottom: 1px solid #eee; text-align: left; display: flex; justify-content: space-between; }
+        .name { font-weight: bold; }
+        .phone { color: #007bff; text-decoration: none; }
+        .footer { text-align: center; margin-top: 30px; font-size: 14px; color: #666; padding-top: 15px; border-top: 1px solid #eee; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>कर्मचारी फोन नम्बर खोज्नुहोस्</h2>
+    <input type="text" id="searchInput" onkeyup="searchFunction()" placeholder="कर्मचारीको नाम टाइप गर्नुहोस्...">
+    <!-- Developer Name Footer in Nepali -->
+    <div class="footer">
+        Developed by <span style="color: #24292e; font-weight: bold;">धर्मानन्द देवकोटा</span>
+    </div>
+</div>
+
+<script>
+function searchFunction() {
+    var input = document.getElementById("searchInput").value.toUpperCase();
+    var list = document.getElementById("employeeList");
+    var items = list.getElementsByClassName("employee-item");
+
+    for (var i = 0; i < items.length; i++) {
+        var name = items[i].getElementsByClassName("name").innerText;
+        if (name.toUpperCase().indexOf(input) > -1) {
+            items[i].style.display = "";
+        } else {
+            items[i].style.display = "none";
+        }
+    }
+}
+</script>
+
+</body>
+</html>
